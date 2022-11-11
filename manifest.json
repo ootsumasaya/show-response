@@ -1,5 +1,5 @@
 {
-    "name": "Popup Response",
+    "name": "Show Response",
     "version": "1.2",
     "manifest_version": 2,
     "devtools_page": "devtools.html",
