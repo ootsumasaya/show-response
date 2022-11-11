@@ -21,8 +21,6 @@ chrome.devtools.network.onRequestFinished.addListener(
           }
           // popup.htmlのElementを取得
           let answersElem = document.getElementById('answers');
-          // 取得したElementにanswersを埋め込む
-          answersElem.innerHTML = answers;
           
           // popupでanswersを見るために，localStorageに保存
           localStorage.setItem("answers", answers);
@@ -34,3 +32,27 @@ chrome.devtools.network.onRequestFinished.addListener(
     );
   }
 );
+
+// ボタンで表示非表示を切り替える
+const answersElem = document.getElementById('answers');
+const hidden_buttonElem = document.getElementById('change_hidden_button');
+hidden_buttonElem.addEventListener('click', () => {
+  // 表示ボタンを押したとき
+  if (answersElem.classList.contains('hidden')) {
+    hidden_buttonElem.textContent = "非表示";
+    const answers = localStorage.getItem("answers")
+    if (answers == "") {
+      answersElem.innerHTML = "まだ読み込んでいません"
+    }
+    else {
+      answersElem.innerHTML = localStorage.getItem("answers");
+    }
+    answersElem.classList.remove('hidden');
+  }
+  // 非表示ボタンを押したとき
+  else {
+    hidden_buttonElem.textContent = "表示";
+    answersElem.innerText = "非表示です";
+    answersElem.classList.add('hidden');
+  }
+});
