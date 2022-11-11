@@ -17,7 +17,7 @@ chrome.devtools.network.onRequestFinished.addListener(
           // 各問の答えを連結
           let answers = ""
           for (var i in contents) {
-            answers += `Q${i}:A${JSON.stringify(contents[i]["correct_ans"])}<br>`;
+            answers += `Q${Number(i)+1}:A${JSON.stringify(contents[i]["correct_ans"])}<br>`;
           }
           // popup.htmlのElementを取得
           let answersElem = document.getElementById('answers');
