@@ -19,10 +19,13 @@ chrome.devtools.network.onRequestFinished.addListener(
           for (var i in contents) {
             answers += `Q${Number(i)+1}:A${JSON.stringify(contents[i]["correct_ans"])}<br>`;
           }
-          // popup.htmlのElementを取得
+          // answersのElementを取得
           let answersElem = document.getElementById('answers');
-          
-          // popupでanswersを見るために，localStorageに保存
+          // 表示状態ならば更新
+          if (!answersElem.classList.contains('hidden')) {
+            answersElem.innerHTML = answers;
+          }
+          // localStorageに保存
           localStorage.setItem("answers", answers);
           // デバッグ用
           chrome.devtools.inspectedWindow.eval(`console.log('answers: ${answers}');`);
